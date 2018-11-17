@@ -4,10 +4,12 @@ This project was created on Thursday, 15th November 2018.
 ### Project Title
 Explore US BikeShare Data
 
+### Goal
+This project aims to present descriptive statistics and to answer interesting questions about a bike share system.
+
 ### Description
 In this project, I make use of Python to explore data related to bike share systems for three major cities in the United States : Chicago, New York City, and Washington.
-
-I wrote a script that takes in raw input to create an interactive experience in the terminal to present descriptive statistics and to answer interesting questions.
+I wrote a script that takes in raw input to create an interactive experience in the terminal.
 
 ### Files used
 The files used are :
