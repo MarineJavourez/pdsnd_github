@@ -18,7 +18,7 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
 
-    city = input('First, please choose a city : chicago, new york city or washington? ')
+    city = input('First, please choose a city : chicago, new york city or washington? ').lower()
     flag = True
     while flag:
         if (city == 'chicago') or (city == 'new york city') or (city == 'washington'):
@@ -28,7 +28,7 @@ def get_filters():
             city = input('You didn\'t enter a correct answer, try again : chicago, new york city or washington? ')
 
     # TO DO: get user input for month (all, january, february, ... , june)
-    month = input('Excellent choice!\nWhich month? all, january, february, march, april, may or june? ')
+    month = input('Excellent choice!\nWhich month? all, january, february, march, april, may or june? ').lower()
     flag = True
     while flag:
         if (month == 'all') or (month == 'january') or (month == 'february') or (month == 'march') or (month == 'april') or (month == 'may') or (month == 'june'):
@@ -39,7 +39,7 @@ def get_filters():
 
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
-    day = input('Perfect!\nJust one more thing, which day of week? all, monday, tuesday, wednesday, thursday, friday, saturday or sunday? ')
+    day = input('Perfect!\nJust one more thing, which day of week? all, monday, tuesday, wednesday, thursday, friday, saturday or sunday? ').lower()
     flag = True
     while flag:
         if (day == 'all') or (day == 'monday') or (day == 'tuesday') or (day == 'wednesday') or (day == 'thursday') or (day == 'friday') or (day == 'saturday') or (day == 'sunday'):
@@ -127,7 +127,7 @@ def station_stats(df):
     print('And the best station to finish on a high note is {}.'.format(popular_end_station))
 
     # TO DO: display most frequent combination of start station and end station trip
-    df['Trip'] = df['Start Station']+' - '+df['End Station']
+    df['Trip'] = df['Start Station'] + ' - ' + df['End Station']
     popular_trip = df['Trip'].mode()[0]
     print('To conclude, the best trip ever is {}!'.format(popular_trip))
 
@@ -142,11 +142,13 @@ def trip_duration_stats(df):
 
     # TO DO: display total travel time
     total_travel = df['Trip Duration'].sum()
-    print('Our riders have cycled a total of {} secondes!'.format(total_travel))
+    total_travel = time.strftime("%H:%M:%S", time.gmtime(total_travel))
+    print('Our riders have cycled a total of {} hours!'.format(total_travel))
 
     # TO DO: display mean travel time
     average_travel = df['Trip Duration'].mean()
-    print('The time of an average trip is {} seconds.'.format(average_travel))
+    average_travel = time.strftime("%H:%M:%S", time.gmtime(average_travel))
+    print('The time of an average trip is {} hours.'.format(average_travel))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -164,8 +166,9 @@ def user_stats(df):
     customer = df['User Type'].value_counts()[1]
     print('And {} are customers without any subscription.\n'.format(customer))
 
+
     # TO DO: Display counts of gender
-    if 'Gender' in df.columns:
+    try:
         number_of_men = df['Gender'].value_counts()[0]
         number_of_women = df['Gender'].value_counts()[1]
         if number_of_men > number_of_women:
@@ -177,7 +180,6 @@ def user_stats(df):
         print('{} women and {} men borrowed a bike.\n'.format(number_of_women, number_of_men))
 
     # TO DO: Display earliest, most recent, and most common year of birth
-    if 'Birth Year' in df.columns:
         current_year = pd.datetime.now().year
         earliest_year = df['Birth Year'].min()
         oldest = current_year - earliest_year
@@ -188,6 +190,8 @@ def user_stats(df):
         most_commun_year = df['Birth Year'].mode()[0]
         commun_age = current_year - most_commun_year
         print('The most commun age is {}.'.format(commun_age))
+    except:
+        print("Gender and year of birth are not available at Washington.")
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
