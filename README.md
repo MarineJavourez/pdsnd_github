@@ -11,6 +11,8 @@ This project aims to present descriptive statistics and to answer interesting qu
 In this project, I make use of Python to explore data related to bike share systems for three major cities in the United States : Chicago, New York City, and Washington.
 I wrote a script that takes in raw input to create an interactive experience in the terminal.
 
+Topics covered are the most frequent times of travel, the most popular stations and trip, the total and average trip duration and statistics on bikeshare users.
+
 ### Files used
 The files used are :
 - chicago.csv
